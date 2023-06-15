@@ -1,7 +1,6 @@
 import pandas as pd
 import numpy as np
-import df_info
-import load
+import lib.load as load
 import data_cleaning as dc
 
 df = load.load_data()
