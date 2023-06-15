@@ -1,6 +1,6 @@
 
 import pandas as pd
-import func as f
+import lib.func as f
 import os
 
 def load_data():

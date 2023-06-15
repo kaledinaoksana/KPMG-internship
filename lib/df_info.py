@@ -2,7 +2,7 @@
 
 import pandas as pd
 import numpy as np
-import func as f 
+import lib.func as f 
 
 class df_info:
     
