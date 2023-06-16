@@ -1,3 +1,4 @@
+   
 import pandas as pd
 import numpy as np
 import lib.load as load
@@ -19,18 +20,15 @@ def merge_df(d_d,d_t,d_a):
 
 def revenue(df):
     return (df['list_price'].sum()-df['standard_cost'].sum())
-    
+
 def percentage(x,y):
     return 100*(x-y)/x
 
-
 df = load.load_data()
 df_transactions = df[0]
-df_new_cust_list = df[1]
+#df_new_cust_list = df[1]
 df_demographic = df[2]
 df_address = df[3]
-
-
 try:
     df_demographic = dc.clean_demographic(df_demographic).reset_index(drop=True)
     df_address = dc.clean_address(df_address).reset_index(drop=True)
@@ -44,3 +42,4 @@ per_revenue = percentage(revenue(df[0]),revenue(dff))
 per_len = percentage(len(df[0]), len(dff))
 
 print('% revenue = ',per_revenue.round(2),', % len = ',per_len)
+

@@ -37,6 +37,10 @@ def clean_transactions(df):
     df.loc[df['online_order'].isnull(), 'online_order'] = 0.0
     return df
 
+
+
+#TEST
+
 # df = load.load_data()
 # df_transactions = df[0]
 # df_new_cust_list = df[1]
