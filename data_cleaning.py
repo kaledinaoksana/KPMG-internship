@@ -1,11 +1,16 @@
 import pandas as pd
 import lib.load as load
+import os
+
+
+
 
 def clean_demographic(df):
     # drop columns
     df = df.drop(columns="default")
     # DOB
     #df = df.rename(columns={"DOB": "date_of_birth"})
+    
     # 'gender'
     df['gender'] = df['gender'].str.replace('Female','F')
     df['gender'] = df['gender'].str.replace('Femal','F')
@@ -22,12 +27,17 @@ def clean_demographic(df):
     #df = df.drop(df[df['age'].isnull()].index)
     # indexes before
     # df = df.drop(df[df['customer_id'] < 3501 ].index)
+    df = df.rename(columns={"past_3_years_bike_related_purchases": "past_3y_brp"})
+    path = os.getcwd() +'/file/demographic.csv'
+    df.to_csv(path, index = False)
     return df
 
 def clean_address(df):
     df['state'] = df['state'].str.replace('Victoria','VIC')
     df['state'] = df['state'].str.replace('New South Wales','NSW')
     # df = df.drop(df[df['customer_id'] < 3501 ].index)
+    path = os.getcwd() +'/file/address.csv'
+    df.to_csv(path, index = False)
     return df
 
 def clean_transactions(df):
@@ -35,6 +45,8 @@ def clean_transactions(df):
     #df = df.drop(df[df['customer_id'] < 3501 ].index)
     df = df.loc[(df['brand'].notnull()) & (df['product_line'].notnull())]
     df.loc[df['online_order'].isnull(), 'online_order'] = 0.0
+    path = os.getcwd() +'/file/transactions.csv'
+    df.to_csv(path, index = False)
     return df
 
 
