@@ -1,4 +1,3 @@
-   
 import pandas as pd
 import numpy as np
 import lib.load as load
@@ -19,14 +18,15 @@ try:
 except Exception:
     print('ERROR.')
     
+    
 print('TRANSACTION WITHOUT CLEAN')
 i.df_info.columns_na(df[0])
 
 print('TRANSACTION CLEANING')
 i.df_info.columns_na(df_transactions)
-f.percentage_cleaning_tr(df_transactions,df)
+f.percentage_cleaning_tr(df_transactions)
 
 print('MERGE DFF CLEANING')
 dff = f.merge_df_inner(df_demographic,df_transactions,df_address)
 i.df_info.columns_na(dff)
-f.percentage_cleaning_tr(dff,df)
+f.percentage_cleaning_tr(dff)
