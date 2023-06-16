@@ -29,13 +29,17 @@ class df_info:
         
     def columns_na(df):
         # dropna - columns
-        columns_with_na_dropped = df.dropna()
+        columns_with_na_dropped = df.dropna(axis=1)
         a = df.shape[1] - columns_with_na_dropped.shape[1]
         per_cent = a/df.shape[1]*100.00
         print("Columns in original dataset: %d " % df.shape[1])
         print("Columns with na's dropped: %d " % columns_with_na_dropped.shape[1])
         print("Columns with na: %d "% a )
         print("Percent of columns with na: %d"% per_cent + '%\n')
+        nulls = df.isnull().sum().to_frame()
+        for index, row in nulls.iterrows():
+            if (row[0] != 0):
+                print(row[0], index)
         return
         
     def column_names(df):
