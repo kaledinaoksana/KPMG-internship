@@ -5,6 +5,7 @@ import lib.load as load
 import data_cleaning as dc
 import lib.df_info as i
 import lib.func as f
+import os
 
 df = load.load_data()
 df_transactions = df[0]
@@ -19,14 +20,10 @@ try:
 except Exception:
     print('ERROR.')
     
-print('TRANSACTION WITHOUT CLEAN')
-i.df_info.columns_na(df[0])
-
-print('TRANSACTION CLEANING')
-i.df_info.columns_na(df_transactions)
-f.percentage_cleaning_tr(df_transactions,df)
-
-print('MERGE DFF CLEANING')
-dff = f.merge_df_inner(df_demographic,df_transactions,df_address)
-i.df_info.columns_na(dff)
-f.percentage_cleaning_tr(dff,df)
+    
+path = os.getcwd() + '/file/demographic.csv'   
+    
+if not os.path.isfile(path):
+    df.to_csv(path, header = 'column_names')
+else:
+    df.to_csv(path, mode = 'a', header = False)
